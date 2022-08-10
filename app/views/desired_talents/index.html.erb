@@ -1,0 +1,47 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Desired talents (Entries by students)</h1>
+
+<br>
+
+<table class="table table-bordered table-hover">
+  <thead class="table-secondary">
+    <tr>
+      <th scope="col">Matric Number</th>
+      <th scope="col">Full name</th>
+      <th scope="col">Talent options</th>
+      <th scope="col">Action</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @desired_talents.each do |dt| %>
+      <tr>
+        <td><%= dt.user.matric_no %></td>
+        <td><%= dt.user.full_name %></td>
+        <td>
+          <ol>
+            <% dt.talent_options.each do |to| %>
+              <li><%= to %></li>
+            <% end %>
+          </ol>
+        </td>
+        <% if current_user.admin == true %>
+          <td><%#= link_to "View", dt, class: "btn btn-sm btn-primary mb-1" %> <%= link_to "Edit", edit_desired_talent_path(dt), class: "btn btn-sm btn-primary" %></td>
+        
+          <td><%= button_to 'Delete', desired_talent_path(dt), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger' %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<!--<h1>Desired talents</h1>
+
+<div id="desired_talents">
+  <% @desired_talents.each do |desired_talent| %>
+    <%= render desired_talent %>
+  <% end %>
+</div>-->
+
+<%#= link_to "New desired talent", new_desired_talent_path %>

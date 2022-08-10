@@ -1,0 +1,11 @@
+<div class="my-5 container">
+  <h1>Hello, <%= current_user.full_name %></h1>
+  <%= current_user.matric_no %> | 
+  <%= current_user.email %>
+  <br>
+  <p>Kindly fill the form below to select your prefered options in computer science</p>
+  <p class="text-info">Maximum selection is 5</p>
+  <hr>
+
+  <%= render 'form', desired_talent: @desired_talent %>
+</div>

@@ -1,0 +1,47 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Desired talents (Entries by an Administrator)</h1>
+
+<br>
+
+<table class="table table-bordered table-hover">
+  <thead class="table-secondary">
+    <tr>
+      <th scope="col">Matric Number</th>
+      <th scope="col">Full name</th>
+      <th scope="col">Talent options</th>
+      <th scope="col">Action</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @indicated_talents.each do |it| %>
+      <tr>
+        <td><%= it.matric_no %></td>
+        <td><%= it.full_name %></td>
+        <td>
+          <ol>
+            <% it.talent_options.each do |to| %>
+              <li><%= to %></li>
+            <% end %>
+          </ol>
+        </td>
+        <% if current_user.admin == true || current_user == it.user %>
+          <td><%#= link_to "View", it, class: "btn btn-sm btn-primary mb-1" %> <%= link_to "Edit", edit_indicated_talent_path(it), class: "btn btn-sm btn-primary" %></td>
+        
+          <td><%= button_to 'Delete', indicated_talent_path(it), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger' %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<!--<h1>indicated talents</h1>
+
+<div id="indicated_talents">
+  <% @indicated_talents.each do |indicated_talent| %>
+    <%= render indicated_talent %>
+  <% end %>
+</div>-->
+
+<%#= link_to "New indicated talent", new_indicated_talent_path %>

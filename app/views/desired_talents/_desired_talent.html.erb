@@ -1,0 +1,14 @@
+<div id="<%= dom_id desired_talent %>">
+  <p>
+    <strong>Talent options:</strong>
+    <%= desired_talent.talent_options %>
+    <%= desired_talent.user.matric_no %>(<%= desired_talent.user.full_name %>)
+  </p>
+</div>
+
+<div>
+  <%= link_to "Edit this desired talent", edit_desired_talent_path(desired_talent) %>
+  <%#= link_to "Back to desired talents", desired_talents_path %>
+
+  <%= button_to "Delete talents", desired_talent, method: :delete %>
+</div>

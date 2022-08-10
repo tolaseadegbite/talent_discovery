@@ -1,0 +1,41 @@
+<%= form_with(model: indicated_talent) do |form| %>
+  <% if indicated_talent.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(indicated_talent.errors.count, "error") %> prohibited this indicated_talent from being saved:</h2>
+
+      <ul>
+        <% indicated_talent.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <h5><%= form.label :full_name, style: "display: block" %></h5>
+    <%= form.text_field :full_name, class: "form-control" %>
+  </div>
+
+  <br>
+
+  <div class="form-group">
+    <h5><%= form.label :talent_options %></h5>
+    <% IndicatedTalent::TALENTOPTIONS.each do |key| %>
+      <p>
+        <%= form.check_box :talent_options, { multiple: true, checked: form.object.talent_options&.include?(key.to_s) }, key, nil %>
+        <%= form.label key %>
+      </p>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.label :matric_no, style: "display: block" %>
+    <%= form.text_field :matric_no, class: "form-control" %>
+  </div>
+
+  <br>
+
+  <div class="form-group">
+    <%= form.submit :Submit, class: "btn btn-primary" %>
+  </div>
+<% end %>

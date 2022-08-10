@@ -1,0 +1,2 @@
+module DesiredTalentsHelper
+end

@@ -1,0 +1,27 @@
+<%= form_with(model: desired_talent) do |form| %>
+  <% if desired_talent.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(desired_talent.errors.count, "error") %> prohibited this desired_talent from being saved:</h2>
+
+      <ul>
+        <% desired_talent.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <h5><%= form.label :talent_options %></h5>
+    <% DesiredTalent::TALENTOPTIONS.each do |key| %>
+      <p>
+        <%= form.check_box :talent_options, { multiple: true, checked: form.object.talent_options&.include?(key.to_s) }, key, nil %>
+        <%= form.label key %>
+      </p>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.submit :Submit, class: "btn btn-primary" %>
+  </div>
+<% end %>

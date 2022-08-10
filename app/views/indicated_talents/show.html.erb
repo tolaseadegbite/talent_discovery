@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @indicated_talent %>
+
+<div>
+  <%= link_to "Edit this indicated talent", edit_indicated_talent_path(@indicated_talent) %> |
+  <%= link_to "Back to indicated talents", indicated_talents_path %>
+
+  <%= button_to "Destroy this indicated talent", @indicated_talent, method: :delete %>
+</div>

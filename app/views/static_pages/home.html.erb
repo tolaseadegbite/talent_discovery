@@ -1,0 +1,42 @@
+<div class="text-center my-5">
+  <h1>Hello</h1>
+  <% if current_user %>
+    <%= current_user.matric_no %> | 
+    <%= current_user.email %>
+    <p><%= current_user.full_name %></p>
+    <br>
+    <% if current_user.desired_talents.empty? %>
+      <%= link_to "Click here to fill your desired epartmental options", new_desired_talent_path, class: "btn btn-primary btn-lg" %>
+    <% else %>
+      <table class="table table-bordered table-hover">
+        <thead class="table-secondary">
+          <tr>
+            <th scope="col">Matric Number</th>
+            <th scope="col">Full name</th>
+            <th scope="col">Talent options</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @desired_talents.each do |dt| %>
+            <tr>
+              <td><%= dt.user.matric_no %></td>
+              <td><%= dt.user.full_name %></td>
+              <td>
+                <ol>
+                  <% dt.talent_options.each do |to| %>
+                    <li><%= to %></li>
+                  <% end %>
+                </ol>
+              </td>
+              <td><%#= link_to "View", dt, class: "btn btn-sm btn-primary mb-1" %> <%= link_to "Edit", edit_desired_talent_path(dt), class: "btn btn-sm btn-primary" %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% end %>
+  <% else %>
+    <%= link_to 'Sign Up', new_user_registration_path %>
+    <%= link_to 'Sign In', new_user_session_path %>
+  <% end %>
+</div>

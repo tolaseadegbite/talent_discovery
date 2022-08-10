@@ -1,0 +1,13 @@
+<div class="my-5 container">
+  <h1>Edit your talents</h1>
+  <hr>
+
+  <%= render 'form', desired_talent: @desired_talent %>
+
+  <br>
+
+  <div>
+    <%= link_to "Show this desired talent", @desired_talent %> |
+    <%= link_to "Back to desired talents", desired_talents_path %>
+  </div>
+</div>
